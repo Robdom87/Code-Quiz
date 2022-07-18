@@ -1,0 +1,28 @@
+header ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    height: 20vh;
+}
+
+.start {
+    height: 80vh;
+    
+}
+
+.start h1 {
+    
+    text-align: center;
+}
+
+.start p {
+    text-align: center;
+    
+}
+
+.start button {
+    text-align: center;
+    
+}
+
+
