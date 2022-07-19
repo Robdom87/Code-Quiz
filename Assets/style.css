@@ -2,6 +2,21 @@
     --prim: hsl(360, 91%, 36%);
 }
 
+/* general formatting */
+h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.redF {
+    background-color: var(--prim);
+    border-radius: 15px;
+    padding: 10px;
+    border: var(--prim) solid 3px;
+    font-style: bold;
+    color: white;
+    margin-bottom: 5px;
+}
 /* formatting for the header */
 header ul {
     list-style: none;
@@ -19,8 +34,8 @@ header ul {
 
 /* formatting for the start page */
 .start {
-    height: 80vh;  
-    display: none; 
+    height: 80vh;
+    display: none;
 }
 
 .start * {
@@ -37,16 +52,7 @@ header ul {
 
 .start div {
     display: flex;
-    justify-content: center;  
-}
-
-.start div button {
-    background-color: var(--prim);
-    border-radius: 15px;
-    padding: 10px;
-    border:var(--prim) solid 3px;
-    font-style: bold;
-    color: white;
+    justify-content: center;
 }
 
 /* formatting for questions page */
@@ -56,21 +62,9 @@ header ul {
     display: none;
 }
 
-.questions h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
 .responses * {
     display: flex;
     flex-direction: column;
-    background-color: var(--prim);
-    border-radius: 15px;
-    padding: 10px;
-    border:var(--prim) solid 3px;
-    font-style: bold;
-    color: white;
-    margin-bottom: 5px;
 }
 
 .qFooter {
@@ -78,25 +72,36 @@ header ul {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-} 
+}
 
-.qFooter *{
+.qFooter * {
     padding: 5px;
     border-radius: 5px;
     font-style: bold;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 /* formatting for end page */
 .end {
-    /* display: none; */
-    
+    display: none;
+    text-align: center;
+}
+
+.end * {
+    margin-bottom: 5px;
 }
 
 /* formatting for scores page */
 .scores {
-    display: none;
-
+    /* display: none; */
+    text-align: center;
 }
 
+.scores * {
+    margin-bottom: 5px;
+}
 
+.scores div {
+    display: flex;
+    justify-content: center;
+}

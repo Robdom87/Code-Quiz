@@ -25,24 +25,24 @@
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                 scores will penalize your score/time by ten seconds! </p>
             <div>
-                <button>Start Quiz</button>
+                <button class="redF">Start Quiz</button>
             </div>
         </section>
         <!-- section shown when the quiz is intitiated. -->
         <section class="questions">
             <h2 id="question">Why did the chicken cross the road?</h2>
-            <section class="responses">
-                <button id="r1">To get to the other side.</button>
-                <button id="r2">Ur mom.</button>
-                <button id="r3">Everyone always ask why the chicken crossed the road, but never how?</button>
-                <button id="r4">It all the same. nothing matters.</button>
+            <section class="responses redF">
+                <button  id="r1">To get to the other side.</button>
+                <button  id="r2">Ur mom.</button>
+                <button  id="r3">Everyone always ask why the chicken crossed the road, but never how?</button>
+                <button  id="r4">It all the same. nothing matters.</button>
             </section>
             <section class="qFooter">
                 <span id="rOrW">Wrong!</span>
                 <button id="nOrS">Submit</button>
-            </section>      
+            </section>
         </section>
-         <!-- section shown when the quiz is ended and score is shown. -->
+        <!-- section shown when the quiz is ended and score is shown. -->
         <section class="end">
             <h2>All done!</h2>
             <p>Your final score is 69%!</p>
@@ -55,10 +55,12 @@
         <!-- section showing all the scores -->
         <section class="scores">
             <h2>High Scores</h2>
-            <p id="allScores"></p>
+            <div>
+                <p class="redF" id="allScores">The big Boss</p>
+            </div>
             <section class="scoresButtons">
                 <button>Go Back</button>
-                <button>Clear High Scores</button>
+                <button>Clear</button>
             </section>
         </section>
     </main>
