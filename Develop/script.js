@@ -46,3 +46,29 @@ var codeQs = [
     //console.log(codeQs[22][0]); should print question
     //console.log(codeQs[22][1][3]); question 22 4th response
     //console.log(codeQs[22][1][0][1]); should be true
+
+//global array to hold all hish scores
+var highScores = [
+];
+
+//upon touching the start button, code page is opened and populated appropiately
+    //random and array to propulate randomly and not repeat, with answers in different locations
+    var startBtn = document.querySelector("#startBtn"); 
+    startBtn.addEventListener("click", initiateQuiz); 
+
+    function initiateQuiz (){
+
+    };
+//user toggles one of the buttons and then sumbit, gets feedback if its correct or not, then can proceed next
+    //array to count all write answers and calc score
+
+//add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer
+    //close outs code page when done
+
+//end page open and shows scores, also allows the user to submit their intitals to the scores
+    //array to hold all scores
+    //button to restart quiz?
+
+//open up high score when view scores and is pressed and populates the page appropriately
+    //button to clear scores
+    //button to go back to the start of the page
