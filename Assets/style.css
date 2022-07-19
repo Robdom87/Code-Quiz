@@ -1,28 +1,52 @@
+:root {
+    --prim: hsl(360, 91%, 36%);
+}
+
+/* formatting for the header */
 header ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
     height: 20vh;
+    margin: 20px;
+    font-size: 1em;
+    font-style: bold;
 }
 
+.score {
+    color: var(--prim);
+}
+
+/* formatting for the start page */
 .start {
-    height: 80vh;
-    
+    height: 80vh;  
+    display: none; 
+}
+
+.start * {
+    font-size: 1em;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
 }
 
 .start h1 {
-    
-    text-align: center;
+    font-size: 3em;
 }
 
-.start p {
-    text-align: center;
-    
+.start div {
+    display: flex;
+    justify-content: center;  
 }
 
-.start button {
-    text-align: center;
-    
+.start div button {
+    background-color: var(--prim);
+    border-radius: 25px;
+    padding: 10px;
+    border:var(--prim) solid 3px;
+    font-style: bold;
+    color: white;
 }
 
 
