@@ -52,18 +52,44 @@ var highScores = [
 ];
 
 //upon touching the start button, code page is opened and populated appropiately
-    //random and array to propulate randomly and not repeat, with answers in different locations
+    
     var startBtn = document.querySelector("#startBtn"); 
     startBtn.addEventListener("click", initiateQuiz); 
 
     function initiateQuiz (){
+        document.getElementById("start").style.display = "none";
+        document.getElementById("questions").style.display= "block";
+        var wrong = 73000;
+        var outOfTime = timer(wrong); 
+        //close outs code page when done
+        if (outOfTime) {
+            document.getElementById("questions").style.display = "none";
+            return;
+        }
 
     };
+    //random and array to propulate randomly and not repeat, with answers in different locations
+
+
+
 //user toggles one of the buttons and then sumbit, gets feedback if its correct or not, then can proceed next
     //array to count all write answers and calc score
 
 //add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer
-    //close outs code page when done
+    
+    function timer (wrong) {
+        var endTime = new Date().getTime()+ 76000;
+        var countdown = setInterval(function(){
+            var startTime = new Date().getTime();
+            var timeLeft = endTime - startTime - wrong;
+            var seconds = Math.floor(timeLeft / 1000);
+            document.getElementById("time").innerHTML ="Time: " + seconds + " sec";      
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                return true;
+            }
+        }, 1000);     
+    };
 
 //end page open and shows scores, also allows the user to submit their intitals to the scores
     //array to hold all scores

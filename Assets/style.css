@@ -33,12 +33,12 @@ header ul {
 }
 
 /* formatting for the start page */
-.start {
+#start {
     height: 80vh;
     display: block;
 }
 
-.start * {
+#start * {
     font-size: 1em;
     margin-bottom: 15px;
     margin-left: 15px;
@@ -46,17 +46,17 @@ header ul {
     text-align: center;
 }
 
-.start h1 {
+#start h1 {
     font-size: 3em;
 }
 
-.start div {
+#start div {
     display: flex;
     justify-content: center;
 }
 
 /* formatting for questions page */
-.questions {
+#questions {
     margin-left: 20vw;
     margin-right: 10vw;
     display: none;
