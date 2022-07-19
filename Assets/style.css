@@ -35,7 +35,7 @@ header ul {
 /* formatting for the start page */
 .start {
     height: 80vh;
-    display: none;
+    display: block;
 }
 
 .start * {
@@ -93,7 +93,7 @@ header ul {
 
 /* formatting for scores page */
 .scores {
-    /* display: none; */
+    display: none;
     text-align: center;
 }
 
