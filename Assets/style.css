@@ -7,7 +7,7 @@ header ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    height: 20vh;
+    height: 15vh;
     margin: 20px;
     font-size: 1em;
     font-style: bold;
@@ -47,6 +47,22 @@ header ul {
     border:var(--prim) solid 3px;
     font-style: bold;
     color: white;
+}
+
+/* formatting for questions page */
+.questions {
+
+}
+
+/* formatting for end page */
+.end {
+    display: none;
+}
+
+/* formatting for scores page */
+.scores {
+    display: none;
+
 }
 
 
