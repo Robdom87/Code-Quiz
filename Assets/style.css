@@ -42,7 +42,7 @@ header ul {
 
 .start div button {
     background-color: var(--prim);
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 10px;
     border:var(--prim) solid 3px;
     font-style: bold;
@@ -51,12 +51,46 @@ header ul {
 
 /* formatting for questions page */
 .questions {
+    margin-left: 20vw;
+    margin-right: 10vw;
+    display: none;
+}
 
+.questions h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.responses * {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--prim);
+    border-radius: 15px;
+    padding: 10px;
+    border:var(--prim) solid 3px;
+    font-style: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.qFooter {
+    border-top: solid 3px grey;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+} 
+
+.qFooter *{
+    padding: 5px;
+    border-radius: 5px;
+    font-style: bold;
+    font-size: 1.1em;
 }
 
 /* formatting for end page */
 .end {
-    display: none;
+    /* display: none; */
+    
 }
 
 /* formatting for scores page */
