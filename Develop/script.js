@@ -51,28 +51,31 @@ var codeQs = [
 var highScores = [
 ];
 
-
 //upon touching the start button, code page is opened and populated appropiately   
 var startBtn = document.querySelector("#startBtn");
 startBtn.addEventListener("click", initiateQuiz);
 
+
+
 function initiateQuiz() {
-    
+
     document.getElementById("start").style.display = "none";
     document.getElementById("questionSect").style.display = "block";
     var qAsked = [-1];
     fillQ(qAsked);
     var nextBtn = document.querySelector("#next");
-    nextBtn.addEventListener("click", function(){ //how to add a function with a parameter in an event listener
+    nextBtn.addEventListener("click", function () { //how to add a function with a parameter in an event listener
         fillQ(qAsked);// <- There use your function with param in brackets
-     }, false);
+    }, false);
     var wrong = wrongQs();
 
     timer(wrong);
 };
 
+//random and array to propulate randomly and not repeat, with answers in different locations
 //fillQ populates the questions at random, and places the answers randomly as well
 function fillQ(qAsked) {
+    document.getElementById("qFooter").style.display = "none";
     //fills random question
     let random = Math.floor(Math.random() * codeQs.length);
     while (qAsked.includes(random)) {
@@ -85,42 +88,110 @@ function fillQ(qAsked) {
     let randR = Math.floor(Math.random() * 4);
     var placedR = [];
     placedR.push(randR);
-    document.getElementById("1").innerHTML = codeQs[random][1][randR][0];
+    document.getElementById("r1").innerHTML = codeQs[random][1][randR][0];
+    var r1 = codeQs[random][1][randR][1];
 
     while (placedR.includes(randR)) {
         randR = Math.floor(Math.random() * 4);
     }
-    document.getElementById("2").innerHTML = codeQs[random][1][randR][0];
+    document.getElementById("r2").innerHTML = codeQs[random][1][randR][0];
+    var r2 = codeQs[random][1][randR][1];
     placedR.push(randR);
 
     while (placedR.includes(randR)) {
         randR = Math.floor(Math.random() * 4);
     }
-    document.getElementById("3").innerHTML = codeQs[random][1][randR][0];
+    document.getElementById("r3").innerHTML = codeQs[random][1][randR][0];
     placedR.push(randR);
+    var r3 = codeQs[random][1][randR][1];
 
     while (placedR.includes(randR)) {
         randR = Math.floor(Math.random() * 4);
     }
-    document.getElementById("4").innerHTML = codeQs[random][1][randR][0];
+    document.getElementById("r4").innerHTML = codeQs[random][1][randR][0];
     placedR.push(randR);
-    console.log("g");
+    var r4 = codeQs[random][1][randR][1];
+
+    var responses = [r1, r2, r3, r4];
+    checkR(responses);
+
+
+
     return qAsked;
 
 }
 
-//random and array to propulate randomly and not repeat, with answers in different locations
-
-
 
 //user toggles one of the buttons and then sumbit, gets feedback if its correct or not, then can proceed next
 //array to count all write answers and calc score
+function checkR(responses) {
+    var r1Btn = document.querySelector("#r1");
+    r1Btn.addEventListener("click", function () {
+        MC1(responses);
+    }, false);
+
+    var r2Btn = document.querySelector("#r2");
+    r2Btn.addEventListener("click", function () {
+        MC2(responses);
+    }, false);
+
+    var r3Btn = document.querySelector("#r3");
+    r3Btn.addEventListener("click", function () {
+        MC3(responses);
+    }, false);
+
+    var r4Btn = document.querySelector("#r4");
+    r4Btn.addEventListener("click", function () {
+        MC4(responses);
+    }, false);
+
+}
+
+function MC1(responses) {
+    document.getElementById("qFooter").style.display = "flex";
+    if (responses[0]) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+        //someway to let the team know that we 
+    }
+}
+
+function MC2(responses) {
+    document.getElementById("qFooter").style.display = "flex";
+    if (responses[1]) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+        //someway to let the team know that we 
+    }
+}
+
+function MC3(responses) {
+    document.getElementById("qFooter").style.display = "flex";
+    if (responses[2]) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+        //someway to let the team know that we 
+    }
+}
+
+function MC4(responses) {
+    document.getElementById("qFooter").style.display = "flex";
+    if (responses[3]) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+        //someway to let the team know that we 
+    }
+}
+
 function wrongQs() {
     return 0;
 }
 
 //add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer
-
 function timer(wrong) {
     var endTime = new Date().getTime() + 76000; //outside of setInterval so it is not updated
     var countdown = setInterval(function () {

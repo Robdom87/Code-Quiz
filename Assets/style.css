@@ -17,6 +17,7 @@ h2 {
     color: white;
     margin-bottom: 5px;
 }
+
 /* formatting for the header */
 header ul {
     list-style: none;
@@ -68,14 +69,16 @@ header ul {
 }
 
 
-.qFooter {
+
+
+#qFooter {
     border-top: solid 3px grey;
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: 10px;
 }
 
-.qFooter * {
+#qFooter * {
     padding: 5px;
     border-radius: 5px;
     font-style: bold;
