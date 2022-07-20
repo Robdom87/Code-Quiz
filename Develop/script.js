@@ -52,13 +52,9 @@ var highScores = [
 ];
 
 
-
-
-
 //upon touching the start button, code page is opened and populated appropiately   
 var startBtn = document.querySelector("#startBtn");
 startBtn.addEventListener("click", initiateQuiz);
-
 
 function initiateQuiz() {
     
@@ -66,9 +62,11 @@ function initiateQuiz() {
     document.getElementById("questionSect").style.display = "block";
     var qAsked = [-1];
     fillQ(qAsked);
-    var wrong = wrongQs();
     var nextBtn = document.querySelector("#next");
-    nextBtn.addEventListener("click", fillQ(qAsked));
+    nextBtn.addEventListener("click", function(){ //how to add a function with a parameter in an event listener
+        fillQ(qAsked);// <- There use your function with param in brackets
+     }, false);
+    var wrong = wrongQs();
 
     timer(wrong);
 };
@@ -106,6 +104,7 @@ function fillQ(qAsked) {
     }
     document.getElementById("4").innerHTML = codeQs[random][1][randR][0];
     placedR.push(randR);
+    console.log("g");
     return qAsked;
 
 }
@@ -117,7 +116,7 @@ function fillQ(qAsked) {
 //user toggles one of the buttons and then sumbit, gets feedback if its correct or not, then can proceed next
 //array to count all write answers and calc score
 function wrongQs() {
-    return 73000;
+    return 0;
 }
 
 //add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer

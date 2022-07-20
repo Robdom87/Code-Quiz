@@ -70,7 +70,7 @@ header ul {
 
 .qFooter {
     border-top: solid 3px grey;
-    display: none;
+    display: flex;
     justify-content: space-between;
     padding: 10px;
 }
