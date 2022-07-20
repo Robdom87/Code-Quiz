@@ -56,7 +56,7 @@ header ul {
 }
 
 /* formatting for questions page */
-#questions {
+#questionSect {
     margin-left: 20vw;
     margin-right: 10vw;
     display: none;
@@ -67,9 +67,10 @@ header ul {
     flex-direction: column;
 }
 
+
 .qFooter {
     border-top: solid 3px grey;
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: 10px;
 }
@@ -82,12 +83,12 @@ header ul {
 }
 
 /* formatting for end page */
-.end {
+#end {
     display: none;
     text-align: center;
 }
 
-.end * {
+#end * {
     margin-bottom: 5px;
 }
 
