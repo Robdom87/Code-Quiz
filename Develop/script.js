@@ -479,12 +479,12 @@ function scorePage() {
     var pastScores = storedScore.split(",");
     var printedScores = "";
     for (var i = 0; i < pastScores.length; i++){
+        
         printedScores = printedScores+pastScores[i]+"\n";
     }
     console.log(printedScores);
     document.getElementById("allScores").innerHTML = printedScores;
-
-    
+   
 }
 
 function submit () {
@@ -498,12 +498,20 @@ function submit () {
     localStorage.setItem("highScores",highScores.join());   
 }
 
-function goBack () {
-    return;
-}
 
 function clear () {
-    return;
+    localStorage.setItem("highScores","");  
+    var storedScore = localStorage.getItem("highScores");
+    document.getElementById("allScores").innerHTML = storedScore;  
+}
+
+function goBack () {
+    document.getElementById("start").style.display = "block";
+    document.getElementById("questionSect").style.display = "none";
+    document.getElementById("score").style.visibility = "visible";
+    document.getElementById("end").style.display = "none";
+    document.getElementById("scores").style.display = "none";
+    
 }
 
 //open up high score when view scores and is pressed and populates the page appropriately
@@ -517,7 +525,7 @@ r3Btn.addEventListener("click", MC3);
 r4Btn.addEventListener("click", MC4);
 scoreBtn.addEventListener("click", scorePage);
 submitBtn.addEventListener("click", submit);
-goBackBtn.addEventListener("click", goBack);
+goBackBtn.addEventListener("click", goBack );
 clearBtn.addEventListener("click", clear);
 
 //to do: add input section to save scores with input button and initals, make it save to local

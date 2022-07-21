@@ -13,7 +13,7 @@
 <body>
     <header>
         <ul>
-            <li id="score">View High Scores</li>
+            <li id="score" class="hover">View High Scores</li>
             <li id="time">Time: 75 sec</li>
             <!-- will need to be updated with time -->
         </ul>
@@ -25,21 +25,21 @@
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                 scores will penalize your score/time by ten seconds! </p>
             <div>
-                <button id="startBtn" class="redF">Start Quiz</button>
+                <button id="startBtn" class="redF hover">Start Quiz</button>
             </div>
         </section>
         <!-- section shown when the quiz is intitiated. -->
         <section id="questionSect">
             <h2 id="question"></h2>
             <section class="responses">
-                <button class="redF" id="r1"></button>
-                <button class="redF" id="r2"></button>
-                <button class="redF" id="r3"></button>
-                <button class="redF" id="r4"></button>
+                <button class="redF hover" id="r1"></button>
+                <button class="redF hover" id="r2"></button>
+                <button class="redF hover" id="r3"></button>
+                <button class="redF hover" id="r4"></button>
             </section>
             <section id="qFooter">
                 <span id="check"></span>
-                <button id="next">Next</button>
+                <button id="next" class="hover">Next</button>
             </section>
         </section>
         <!-- section shown when the quiz is ended and score is shown. -->
@@ -49,18 +49,18 @@
             <section class="scoreSub">
                 <p>Enter Initals:</p>
                 <input id="input" type="text">
-                <button id="submit">Submit</button>
+                <button id="submit" class = "hover">Submit</button>
             </section>
         </section>
         <!-- section showing all the scores -->
         <section id="scores">
             <h2>High Scores</h2>
-            <div>
+            <div id="scoresSect">
                 <p class="redF" id="allScores">The big Boss</p>
             </div>
             <section class="scoresButtons">
-                <button id="goBack">Go Back</button>
-                <button id="clear">Clear</button>
+                <button id="goBack" class = "hover">Go Back</button>
+                <button id="clear" class = "hover">Clear</button>
             </section>
         </section>
     </main>

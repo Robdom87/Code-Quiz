@@ -18,6 +18,10 @@ h2 {
     margin-bottom: 5px;
 }
 
+.hover:hover {
+    filter: opacity(70%);
+}
+
 /* formatting for the header */
 header ul {
     list-style: none;
