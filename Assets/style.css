@@ -73,12 +73,10 @@ header ul {
 }
 
 
-
-
 #qFooter {
     border-top: solid 3px grey;
     display: none;
-    justify-content: space-between;
+    justify-content: left;
     padding: 10px;
 }
 

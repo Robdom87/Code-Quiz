@@ -58,7 +58,6 @@ var qAsked = [];
 
 //upon touching the start button, code page is opened and populated appropiately   
 var startBtn = document.querySelector("#startBtn");
-var nextBtn = document.querySelector("#next");
 var r1Btn = document.querySelector("#r1");
 var r2Btn = document.querySelector("#r2");
 var r3Btn = document.querySelector("#r3");
@@ -121,9 +120,6 @@ function initiateQuiz() {
 function fillQ() {
     //add another question to the counter
     numQs++;
-
-    //added to remove bottm section after next is pressed
-    document.getElementById("qFooter").style.display = "none";
 
     //enable all buttons
     r1Btn.disabled = false;
@@ -236,6 +232,8 @@ function MC1() {
     //return question asked to array
     qAsked.unshift(questionNum);
 
+    fillQ();
+
 }
 
 function MC2() {
@@ -303,6 +301,8 @@ function MC2() {
 
     //return question asked to array
     qAsked.unshift(questionNum);
+
+    fillQ();
 
 }
 
@@ -372,6 +372,8 @@ function MC3() {
     //return question asked to array
     qAsked.unshift(questionNum);
 
+    fillQ();
+
 }
 
 function MC4() {
@@ -439,6 +441,8 @@ function MC4() {
 
     //return question asked to array
     qAsked.unshift(questionNum);
+
+    fillQ();
 
 }
 
@@ -532,7 +536,6 @@ function goBack () {
 //button to clear scores
 //button to go back to the start of the page
 startBtn.addEventListener("click", initiateQuiz);
-nextBtn.addEventListener("click", fillQ);
 r1Btn.addEventListener("click", MC1);
 r2Btn.addEventListener("click", MC2);
 r3Btn.addEventListener("click", MC3);
