@@ -63,6 +63,11 @@ var r1Btn = document.querySelector("#r1");
 var r2Btn = document.querySelector("#r2");
 var r3Btn = document.querySelector("#r3");
 var r4Btn = document.querySelector("#r4");
+var scoreBtn = document.querySelector("#score");
+var submitBtn = document.querySelector("#submit");
+var clearBtn = document.querySelector("#clear");
+var goBackBtn = document.querySelector("#goBack");
+
 
 function initiateQuiz() {
     //include something to clean up qAsked after first try
@@ -108,6 +113,9 @@ function initiateQuiz() {
 //random and array to propulate randomly and not repeat, with answers in different locations
 //fillQ populates the questions at random, and places the answers randomly as well
 function fillQ() {
+    //add another question to the counter
+    numQs++;
+
     //added to remove bottm section after next is pressed
     document.getElementById("qFooter").style.display = "none";
 
@@ -123,20 +131,18 @@ function fillQ() {
         random = Math.floor(Math.random() * codeQs.length);
     }
     document.getElementById("question").innerHTML = codeQs[random][0];
-    qAsked.push(random);
+    qAsked.unshift(random);
 
     //fill response buttons in random order
     let randR = Math.floor(Math.random() * 4);
     let placedR = [];
     placedR.push(randR);
     document.getElementById("r1").innerHTML = codeQs[random][1][randR][0];
-    var r1 = codeQs[random][1][randR][1];
 
     while (placedR.includes(randR)) {
         randR = Math.floor(Math.random() * 4);
     }
     document.getElementById("r2").innerHTML = codeQs[random][1][randR][0];
-    var r2 = codeQs[random][1][randR][1];
     placedR.push(randR);
 
     while (placedR.includes(randR)) {
@@ -144,17 +150,12 @@ function fillQ() {
     }
     document.getElementById("r3").innerHTML = codeQs[random][1][randR][0];
     placedR.push(randR);
-    var r3 = codeQs[random][1][randR][1];
 
     while (placedR.includes(randR)) {
         randR = Math.floor(Math.random() * 4);
     }
     document.getElementById("r4").innerHTML = codeQs[random][1][randR][0];
-    placedR.push(randR);
-    var r4 = codeQs[random][1][randR][1];
-    var responses = [r1, r2, r3, r4];
-
-    return responses;
+    placedR.push(randR);   
 }
 
 //do index of to pull index location of the value
@@ -218,7 +219,7 @@ function MC1() {
             wrong++;
         }
     }
-    
+
      //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
      if (wrong === wrongB) {
         document.getElementById("check").innerHTML = "Correct!";
@@ -227,7 +228,7 @@ function MC1() {
     }
 
     //return question asked to array
-    qAsked.push(questionNum);
+    qAsked.unshift(questionNum);
 
 }
 
@@ -295,7 +296,7 @@ function MC2() {
     }
 
     //return question asked to array
-    qAsked.push(questionNum);
+    qAsked.unshift(questionNum);
 
 }
 
@@ -363,7 +364,7 @@ function MC3() {
     }
 
     //return question asked to array
-    qAsked.push(questionNum);
+    qAsked.unshift(questionNum);
 
 }
 
@@ -431,7 +432,7 @@ function MC4() {
     }
 
     //return question asked to array
-    qAsked.push(questionNum);
+    qAsked.unshift(questionNum);
 
 }
 
@@ -457,8 +458,35 @@ function timer() {
 function endQuiz() {
     document.getElementById("questionSect").style.display = "none";
     document.getElementById("end").style.display = "block";
-    document.getElementById("score").style.display = "block";
+    document.getElementById("score").style.visibility = "visible";
+
+    let score = Math.round(100*(numQs - wrong) / numQs);
+    console.log(score);
+    document.getElementById("scoreStated").innerHTML = "Your final score is "+ score + "%!";
+
 };
+
+function scorePage() {
+    document.getElementById("end").style.display = "none";
+    document.getElementById("start").style.display = "none";
+    document.getElementById("scores").style.display = "block";
+
+    
+}
+
+function submit () {
+    return;
+}
+
+function goBack () {
+    return;
+
+}
+
+function clear () {
+    return;
+
+}
 
 //open up high score when view scores and is pressed and populates the page appropriately
 //button to clear scores
@@ -469,3 +497,7 @@ r1Btn.addEventListener("click", MC1);
 r2Btn.addEventListener("click", MC2);
 r3Btn.addEventListener("click", MC3);
 r4Btn.addEventListener("click", MC4);
+scoreBtn.addEventListener("click", scorePage);
+submitBtn.addEventListener("click", submit);
+goBackBtn.addEventListener("click", goBack);
+clearBtn.addEventListener("click", clear);
