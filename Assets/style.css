@@ -29,7 +29,7 @@ header ul {
     font-style: bold;
 }
 
-.score {
+#score {
     color: var(--prim);
 }
 

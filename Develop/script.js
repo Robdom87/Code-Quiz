@@ -67,6 +67,7 @@ var r4Btn = document.querySelector("#r4");
 function initiateQuiz() {
     //include something to clean up qAsked after first try
     document.getElementById("start").style.display = "none";
+    document.getElementById("score").style.visibility = "hidden";
     document.getElementById("questionSect").style.display = "block";
 
     //fills random question
@@ -107,7 +108,15 @@ function initiateQuiz() {
 //random and array to propulate randomly and not repeat, with answers in different locations
 //fillQ populates the questions at random, and places the answers randomly as well
 function fillQ() {
+    //added to remove bottm section after next is pressed
     document.getElementById("qFooter").style.display = "none";
+
+    //enable all buttons
+    r1Btn.disabled = false;
+    r2Btn.disabled = false;
+    r3Btn.disabled = false;
+    r4Btn.disabled = false;
+
     //fills random question
     let random = Math.floor(Math.random() * codeQs.length);
     while (qAsked.includes(random)) {
@@ -153,30 +162,285 @@ function fillQ() {
 //user toggles one of the buttons and then sumbit, gets feedback if its correct or not, then can proceed next
 //array to count all write answers and calc score
 
-
-function mC() {
+function MC1() {
+    //after clicking one of the buttons, they are all disabled
     r1Btn.disabled = true;
     r2Btn.disabled = true;
     r3Btn.disabled = true;
     r4Btn.disabled = true;
-    if (r1Btn.clicked == true)
+
+    //display question footer
     document.getElementById("qFooter").style.display = "flex";
-    if (responses[0]) {
+
+    //pull the question present
+    var questionNum = qAsked.pop()
+
+    let wrongB = wrong;
+
+    //check if button value is true compared to the index
+    if (codeQs[questionNum][1][0][0] === document.getElementById("r1").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][0][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+        //check for second answer
+    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r1").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][1][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r1").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][2][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r1").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][3][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+    }
+    
+     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
+     if (wrong === wrongB) {
         document.getElementById("check").innerHTML = "Correct!";
-        return correct++;
     } else {
         document.getElementById("check").innerHTML = "Wrong!";
-        return wrong++;
+    }
 
-    }   
+    //return question asked to array
+    qAsked.push(questionNum);
+
+}
+
+function MC2() {
+    //after clicking one of the buttons, they are all disabled
+    r1Btn.disabled = true;
+    r2Btn.disabled = true;
+    r3Btn.disabled = true;
+    r4Btn.disabled = true;
+
+    //display question footer
+    document.getElementById("qFooter").style.display = "flex";
+
+    //pull the question present
+    var questionNum = qAsked.pop()
+
+    let wrongB = wrong;
+
+    //check if button value is true compared to the index
+    if (codeQs[questionNum][1][0][0] === document.getElementById("r1").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][0][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+        //check for second answer
+    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r2").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][1][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r2").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][2][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r2").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][3][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+    }
+     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
+     if (wrong === wrongB) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+    }
+
+    //return question asked to array
+    qAsked.push(questionNum);
+
+}
+
+function MC3() {
+    //after clicking one of the buttons, they are all disabled
+    r1Btn.disabled = true;
+    r2Btn.disabled = true;
+    r3Btn.disabled = true;
+    r4Btn.disabled = true;
+
+    //display question footer
+    document.getElementById("qFooter").style.display = "flex";
+
+    //pull the question present
+    var questionNum = qAsked.pop()
+
+    let wrongB = wrong;
+
+    //check if button value is true compared to the index
+    if (codeQs[questionNum][1][0][0] === document.getElementById("r3").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][0][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+        //check for second answer
+    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r3").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][1][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r3").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][2][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r1").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][3][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+    }
+     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
+     if (wrong === wrongB) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+    }
+
+    //return question asked to array
+    qAsked.push(questionNum);
+
+}
+
+function MC4() {
+    //after clicking one of the buttons, they are all disabled
+    r1Btn.disabled = true;
+    r2Btn.disabled = true;
+    r3Btn.disabled = true;
+    r4Btn.disabled = true;
+
+    //display question footer
+    document.getElementById("qFooter").style.display = "flex";
+
+    //pull the question present
+    var questionNum = qAsked.pop()
+
+    let wrongB = wrong;
+
+    //check if button value is true compared to the index
+    if (codeQs[questionNum][1][0][0] === document.getElementById("r4").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][0][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+        //check for second answer
+    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r4").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][1][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r4").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][2][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+
+    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r4").innerHTML) {
+        //if it matches check if its true
+        if (codeQs[questionNum][1][3][1]) {
+            //if it is true, then add to correct
+            correct++;
+        } else {
+            //if not add to wrong
+            wrong++;
+        }
+    }
+     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
+     if (wrong === wrongB) {
+        document.getElementById("check").innerHTML = "Correct!";
+    } else {
+        document.getElementById("check").innerHTML = "Wrong!";
+    }
+
+    //return question asked to array
+    qAsked.push(questionNum);
+
 }
 
 //add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer
-function timer(wrong) {
+function timer() {
     var endTime = new Date().getTime() + 76000; //outside of setInterval so it is not updated
     var countdown = setInterval(function () {
         var startTime = new Date().getTime(); //gets the current time of todays date in miliseconds
-        var timeLeft = endTime - startTime - (wrong*1000);
+        var timeLeft = endTime - startTime - (wrong * 10000);
         var seconds = Math.floor(timeLeft / 1000);
         document.getElementById("time").innerHTML = "Time: " + seconds + " sec";
         if (timeLeft <= 0) {
@@ -193,14 +457,15 @@ function timer(wrong) {
 function endQuiz() {
     document.getElementById("questionSect").style.display = "none";
     document.getElementById("end").style.display = "block";
+    document.getElementById("score").style.display = "block";
 };
 
 //open up high score when view scores and is pressed and populates the page appropriately
-    //button to clear scores
-    //button to go back to the start of the page
-    startBtn.addEventListener("click", initiateQuiz);
-    nextBtn.addEventListener("click", fillQ);
-    r1Btn.addEventListener("click", mC);
-    r2Btn.addEventListener("click", mC);
-    r3Btn.addEventListener("click", mC);
-    r4Btn.addEventListener("click", mC);
+//button to clear scores
+//button to go back to the start of the page
+startBtn.addEventListener("click", initiateQuiz);
+nextBtn.addEventListener("click", fillQ);
+r1Btn.addEventListener("click", MC1);
+r2Btn.addEventListener("click", MC2);
+r3Btn.addEventListener("click", MC3);
+r4Btn.addEventListener("click", MC4);
