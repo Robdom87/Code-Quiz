@@ -69,6 +69,7 @@ var clearBtn = document.querySelector("#clear");
 var goBackBtn = document.querySelector("#goBack");
 
 
+
 function initiateQuiz() {
     //include something to clean up qAsked after first try
     document.getElementById("start").style.display = "none";
@@ -456,12 +457,15 @@ function timer() {
 //array to hold all scores
 //button to restart quiz?
 function endQuiz() {
+    submitBtn.disabled = false;
     document.getElementById("questionSect").style.display = "none";
     document.getElementById("end").style.display = "block";
     document.getElementById("score").style.visibility = "visible";
 
     let score = Math.round(100*(numQs - wrong) / numQs);
-    console.log(score);
+    highScores.unshift(score);
+    console.log(highScores);
+    
     document.getElementById("scoreStated").innerHTML = "Your final score is "+ score + "%!";
 
 };
@@ -470,22 +474,36 @@ function scorePage() {
     document.getElementById("end").style.display = "none";
     document.getElementById("start").style.display = "none";
     document.getElementById("scores").style.display = "block";
+    var storedScore = localStorage.getItem("highScores");
+    
+    var pastScores = storedScore.split(",");
+    var printedScores = "";
+    for (var i = 0; i < pastScores.length; i++){
+        printedScores = printedScores+pastScores[i]+"\n";
+    }
+    console.log(printedScores);
+    document.getElementById("allScores").innerHTML = printedScores;
 
     
 }
 
 function submit () {
-    return;
+    submitBtn.disabled = true;
+    let inputValue = document.getElementById("input").value;
+    let initalPlusScores = inputValue+" - "+ highScores.pop();
+    highScores.unshift(initalPlusScores);
+    console.log(highScores);
+    var storedScore = localStorage.getItem("highScores");
+    highScores.push(storedScore);
+    localStorage.setItem("highScores",highScores.join());   
 }
 
 function goBack () {
     return;
-
 }
 
 function clear () {
     return;
-
 }
 
 //open up high score when view scores and is pressed and populates the page appropriately
@@ -501,3 +519,6 @@ scoreBtn.addEventListener("click", scorePage);
 submitBtn.addEventListener("click", submit);
 goBackBtn.addEventListener("click", goBack);
 clearBtn.addEventListener("click", clear);
+
+//to do: add input section to save scores with input button and initals, make it save to local
+//scores to pull the scores and add functionality to the two buttons
