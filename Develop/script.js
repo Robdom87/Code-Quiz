@@ -75,6 +75,11 @@ function initiateQuiz() {
     document.getElementById("start").style.display = "none";
     document.getElementById("score").style.visibility = "hidden";
     document.getElementById("questionSect").style.display = "block";
+    //reset values
+    wrong = 0;
+    numQs = 1;
+    highScores.splice(0,highScores.length);
+    qAsked.splice(0,qAsked.length);
 
     //fills random question
     let random = Math.floor(Math.random() * codeQs.length);
@@ -447,6 +452,7 @@ function timer() {
         document.getElementById("time").innerHTML = "Time: " + seconds + " sec";
         if (timeLeft <= 0) {
             clearInterval(countdown); //closes interval
+            document.getElementById("time").innerHTML = "Time: 0 sec"; 
             endQuiz(); //close outs code page when done 
             return true;
         }
@@ -462,6 +468,7 @@ function endQuiz() {
     document.getElementById("end").style.display = "block";
     document.getElementById("score").style.visibility = "visible";
 
+    //calc score and send to highscores array
     let score = Math.round(100*(numQs - wrong) / numQs);
     highScores.unshift(score);
     console.log(highScores);
@@ -470,12 +477,16 @@ function endQuiz() {
 
 };
 
+//populate scores page
 function scorePage() {
     document.getElementById("end").style.display = "none";
     document.getElementById("start").style.display = "none";
     document.getElementById("scores").style.display = "block";
+
+    //pull scores from local storage
     var storedScore = localStorage.getItem("highScores");
     
+    //break string into an array then run forloop to add scores into a single string with \n
     var pastScores = storedScore.split(",");
     var printedScores = "";
     for (var i = 0; i < pastScores.length; i++){
@@ -483,10 +494,12 @@ function scorePage() {
         printedScores = printedScores+pastScores[i]+"\n";
     }
     console.log(printedScores);
+    //add string to box
     document.getElementById("allScores").innerHTML = printedScores;
    
 }
 
+//sends inital and score to be save to local drive
 function submit () {
     submitBtn.disabled = true;
     let inputValue = document.getElementById("input").value;
@@ -498,13 +511,14 @@ function submit () {
     localStorage.setItem("highScores",highScores.join());   
 }
 
-
+//clear out local drive and clear out text displayed in box
 function clear () {
     localStorage.setItem("highScores","");  
     var storedScore = localStorage.getItem("highScores");
     document.getElementById("allScores").innerHTML = storedScore;  
 }
 
+//return to starting page and make everything else unviewable
 function goBack () {
     document.getElementById("start").style.display = "block";
     document.getElementById("questionSect").style.display = "none";
