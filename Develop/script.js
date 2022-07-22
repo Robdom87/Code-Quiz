@@ -229,7 +229,6 @@ function MC() {
 
 }
 
-
 //add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer
 function timer() {
     var endTime = new Date().getTime() + 76000; //outside of setInterval so it is not updated
@@ -282,7 +281,6 @@ function submit() {
     localStorage.setItem("highScores", highScores.join());
 }
 
-
 //initiated after pressing scores link and populate scores page
 function scorePage() {
     //hide start and end pages
@@ -305,7 +303,6 @@ function scorePage() {
     document.getElementById("allScores").innerHTML = printedScores;
 
 }
-
 
 //initiated after clicking cleear and clears out local drive and text displayed in box
 function clear() {
