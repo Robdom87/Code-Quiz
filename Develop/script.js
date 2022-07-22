@@ -43,20 +43,18 @@ var codeQs = [
     ["What takes place in Hong Kong's Happy Valley", [["Horse racing.", true], ["Spoils", false], ["For", false], ["King", false]]],
     ["Which country does the sport of pelato come from", [["Spain.", true], ["Spoils", false], ["For", false], ["King", false]]]
 ];
-//console.log(codeQs[22][0]); should print question
-//console.log(codeQs[22][1][3]); question 22 4th response
-//console.log(codeQs[22][1][0][1]); should be true
 
-
+//global variables
 var wrong = 0;
-var correct = 0;
-var numQs = 1;
+var numQs = 0;
+var btnClicked = 0;
 
-//global array to hold all hish scores
+//global array holding score
 var highScores = [];
+//global array holding the questions asked in the quiz
 var qAsked = [];
 
-//upon touching the start button, code page is opened and populated appropiately   
+//variables holding various containers from the html  
 var startBtn = document.querySelector("#startBtn");
 var r1Btn = document.querySelector("#r1");
 var r2Btn = document.querySelector("#r2");
@@ -67,20 +65,20 @@ var submitBtn = document.querySelector("#submit");
 var clearBtn = document.querySelector("#clear");
 var goBackBtn = document.querySelector("#goBack");
 
-
-
+//initiated once the start quiz is clicked
 function initiateQuiz() {
-    //include something to clean up qAsked after first try
+    //hide score link, start page, and display questions
     document.getElementById("start").style.display = "none";
     document.getElementById("score").style.visibility = "hidden";
     document.getElementById("questionSect").style.display = "block";
-    //reset values
-    wrong = 0;
-    numQs = 1;
-    highScores.splice(0,highScores.length);
-    qAsked.splice(0,qAsked.length);
 
-    //fills random question
+    //reset values for this test session
+    wrong = 0;
+    numQs = 0;
+    highScores.splice(0, highScores.length);
+    qAsked.splice(0, qAsked.length);
+
+    //prints out first random question
     let random = Math.floor(Math.random() * codeQs.length);
     while (qAsked.includes(random)) {
         random = Math.floor(Math.random() * codeQs.length);
@@ -88,7 +86,7 @@ function initiateQuiz() {
     document.getElementById("question").innerHTML = codeQs[random][0];
     qAsked.push(random);
 
-    //fill response buttons in random order
+    //fills response buttons in random order for the first question
     let randR = Math.floor(Math.random() * 4);
     let placedR = [];
     placedR.push(randR);
@@ -112,30 +110,32 @@ function initiateQuiz() {
     document.getElementById("r4").innerHTML = codeQs[random][1][randR][0];
     placedR.push(randR);
 
+    //initate timer
     timer();
 };
 
-//random and array to propulate randomly and not repeat, with answers in different locations
 //fillQ populates the questions at random, and places the answers randomly as well
 function fillQ() {
+
     //add another question to the counter
     numQs++;
 
-    //enable all buttons
-    r1Btn.disabled = false;
-    r2Btn.disabled = false;
-    r3Btn.disabled = false;
-    r4Btn.disabled = false;
-
-    //fills random question
+    //fills random question 
     let random = Math.floor(Math.random() * codeQs.length);
-    while (qAsked.includes(random)) {
-        random = Math.floor(Math.random() * codeQs.length);
+
+    //check if all questions have been asked
+    if (codeQs.length === numQs) {
+        return;
+    } else {
+        //cross references array to make sure its not repeated
+        while (qAsked.includes(random)) {
+            random = Math.floor(Math.random() * codeQs.length);
+        }
     }
     document.getElementById("question").innerHTML = codeQs[random][0];
-    qAsked.unshift(random);
+    qAsked.push(random);
 
-    //fill response buttons in random order
+    //fill response buttons in random order by cross referencing within an array for posted responses
     let randR = Math.floor(Math.random() * 4);
     let placedR = [];
     placedR.push(randR);
@@ -157,294 +157,78 @@ function fillQ() {
         randR = Math.floor(Math.random() * 4);
     }
     document.getElementById("r4").innerHTML = codeQs[random][1][randR][0];
-    placedR.push(randR);   
+    placedR.push(randR);
 }
 
-//do index of to pull index location of the value
-
-//user toggles one of the buttons and then sumbit, gets feedback if its correct or not, then can proceed next
-//array to count all write answers and calc score
-
+//initiated when response one is clicked and adds response 1 flag to btn clicked variable
 function MC1() {
-    //after clicking one of the buttons, they are all disabled
-    r1Btn.disabled = true;
-    r2Btn.disabled = true;
-    r3Btn.disabled = true;
-    r4Btn.disabled = true;
-
-    //display question footer
-    document.getElementById("qFooter").style.display = "flex";
-
-    //pull the question present
-    var questionNum = qAsked.pop()
-
-    let wrongB = wrong;
-
-    //check if button value is true compared to the index
-    if (codeQs[questionNum][1][0][0] === document.getElementById("r1").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][0][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-        //check for second answer
-    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r1").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][1][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-
-    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r1").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][2][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-
-    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r1").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][3][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-    }
-
-     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
-     if (wrong === wrongB) {
-        document.getElementById("check").innerHTML = "Correct!";
-    } else {
-        document.getElementById("check").innerHTML = "Wrong!";
-    }
-
-    //return question asked to array
-    qAsked.unshift(questionNum);
-
-    fillQ();
-
+    btnClicked = 1;
+    MC();
 }
 
 function MC2() {
-    //after clicking one of the buttons, they are all disabled
-    r1Btn.disabled = true;
-    r2Btn.disabled = true;
-    r3Btn.disabled = true;
-    r4Btn.disabled = true;
-
-    //display question footer
-    document.getElementById("qFooter").style.display = "flex";
-
-    //pull the question present
-    var questionNum = qAsked.pop()
-
-    let wrongB = wrong;
-
-    //check if button value is true compared to the index
-    if (codeQs[questionNum][1][0][0] === document.getElementById("r1").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][0][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-        //check for second answer
-    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r2").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][1][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-
-    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r2").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][2][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-
-    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r2").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][3][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-    }
-     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
-     if (wrong === wrongB) {
-        document.getElementById("check").innerHTML = "Correct!";
-    } else {
-        document.getElementById("check").innerHTML = "Wrong!";
-    }
-
-    //return question asked to array
-    qAsked.unshift(questionNum);
-
-    fillQ();
-
+    btnClicked = 2;
+    MC();
 }
 
 function MC3() {
-    //after clicking one of the buttons, they are all disabled
-    r1Btn.disabled = true;
-    r2Btn.disabled = true;
-    r3Btn.disabled = true;
-    r4Btn.disabled = true;
-
-    //display question footer
-    document.getElementById("qFooter").style.display = "flex";
-
-    //pull the question present
-    var questionNum = qAsked.pop()
-
-    let wrongB = wrong;
-
-    //check if button value is true compared to the index
-    if (codeQs[questionNum][1][0][0] === document.getElementById("r3").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][0][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-        //check for second answer
-    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r3").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][1][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-
-    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r3").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][2][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-
-    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r1").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][3][1]) {
-            //if it is true, then add to correct
-            correct++;
-        } else {
-            //if not add to wrong
-            wrong++;
-        }
-    }
-     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
-     if (wrong === wrongB) {
-        document.getElementById("check").innerHTML = "Correct!";
-    } else {
-        document.getElementById("check").innerHTML = "Wrong!";
-    }
-
-    //return question asked to array
-    qAsked.unshift(questionNum);
-
-    fillQ();
-
+    btnClicked = 3;
+    MC();
 }
 
 function MC4() {
-    //after clicking one of the buttons, they are all disabled
-    r1Btn.disabled = true;
-    r2Btn.disabled = true;
-    r3Btn.disabled = true;
-    r4Btn.disabled = true;
+    btnClicked = 4;
+    MC();
+}
 
+function MC() {
     //display question footer
     document.getElementById("qFooter").style.display = "flex";
 
     //pull the question present
     var questionNum = qAsked.pop()
 
-    let wrongB = wrong;
-
-    //check if button value is true compared to the index
-    if (codeQs[questionNum][1][0][0] === document.getElementById("r4").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][0][1]) {
-            //if it is true, then add to correct
-            correct++;
+    //check which button was clicked
+    if (btnClicked === 1) {
+        //if button was clicked check if the value in the button matches the correct answer in the array
+        if (codeQs[questionNum][1][0][0] === document.getElementById("r1").innerHTML) {
+            document.getElementById("check").innerHTML = "Correct!";
         } else {
-            //if not add to wrong
+            document.getElementById("check").innerHTML = "Wrong!";
             wrong++;
         }
-        //check for second answer
-    } else if (codeQs[questionNum][1][1][0] === document.getElementById("r4").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][1][1]) {
-            //if it is true, then add to correct
-            correct++;
+    } else if (btnClicked === 2) {
+        if (codeQs[questionNum][1][0][0] === document.getElementById("r2").innerHTML) {
+            document.getElementById("check").innerHTML = "Correct!";
         } else {
-            //if not add to wrong
+            document.getElementById("check").innerHTML = "Wrong!";
             wrong++;
         }
-
-    } else if (codeQs[questionNum][1][2][0] === document.getElementById("r4").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][2][1]) {
-            //if it is true, then add to correct
-            correct++;
+    } else if (btnClicked === 3) {
+        if (codeQs[questionNum][1][0][0] === document.getElementById("r3").innerHTML) {
+            document.getElementById("check").innerHTML = "Correct!";
         } else {
-            //if not add to wrong
+            document.getElementById("check").innerHTML = "Wrong!";
             wrong++;
         }
-
-    } else if (codeQs[questionNum][1][3][0] === document.getElementById("r4").innerHTML) {
-        //if it matches check if its true
-        if (codeQs[questionNum][1][3][1]) {
-            //if it is true, then add to correct
-            correct++;
+    } else if (btnClicked === 4) {
+        if (codeQs[questionNum][1][0][0] === document.getElementById("r4").innerHTML) {
+            document.getElementById("check").innerHTML = "Correct!";
         } else {
-            //if not add to wrong
+            document.getElementById("check").innerHTML = "Wrong!";
             wrong++;
         }
     }
-     //after checking which was the value and adding to wrong if incorrect, display if answer was wrong
-     if (wrong === wrongB) {
-        document.getElementById("check").innerHTML = "Correct!";
-    } else {
-        document.getElementById("check").innerHTML = "Wrong!";
-    }
+
 
     //return question asked to array
-    qAsked.unshift(questionNum);
+    qAsked.push(questionNum);
 
+    //prints out the next question
     fillQ();
 
 }
+
 
 //add timer that starts when code is started and is reduced by 10 everytime user gets a wrong answer
 function timer() {
@@ -454,87 +238,93 @@ function timer() {
         var timeLeft = endTime - startTime - (wrong * 10000);
         var seconds = Math.floor(timeLeft / 1000);
         document.getElementById("time").innerHTML = "Time: " + seconds + " sec";
-        if (timeLeft <= 0) {
-            clearInterval(countdown); //closes interval
-            document.getElementById("time").innerHTML = "Time: 0 sec"; 
-            endQuiz(); //close outs code page when done 
-            return true;
+        //close out timer and quiz if timer out or all questions asked
+        if (timeLeft <= 0 || numQs === codeQs.length) {
+            clearInterval(countdown);
+            document.getElementById("time").innerHTML = "Time: 0 sec";
+            //close outs code page when done 
+            endQuiz();
+            return;
         }
-    }, 1000); //updates the timer every second
+    }, 1000);
 };
 
-//end page open and shows scores, also allows the user to submit their intitals to the scores
-//array to hold all scores
-//button to restart quiz?
+//initated when out of time and all questions have been asked
 function endQuiz() {
+    //enable submit button
     submitBtn.disabled = false;
+    //display end page and scores link as well as hiding questions section
     document.getElementById("questionSect").style.display = "none";
     document.getElementById("end").style.display = "block";
     document.getElementById("score").style.visibility = "visible";
 
-    //calc score and send to highscores array
-    let score = Math.round(100*(numQs - wrong) / numQs);
+    //calc score and send to highscores array and display
+    let score = Math.round(100 * (numQs - wrong) / codeQs.length);
     highScores.unshift(score);
-    console.log(highScores);
-    
-    document.getElementById("scoreStated").innerHTML = "Your final score is "+ score + "%!";
+    document.getElementById("scoreStated").innerHTML = "Your final score is " + score + "%!";
 
 };
 
-//populate scores page
+//sends initals and scores to be save to local drive
+function submit() {
+    //disable submit button after pressing
+    submitBtn.disabled = true;
+    //pull initials
+    let inputValue = document.getElementById("input").value;
+    //add intials to current scores
+    let initalPlusScores = inputValue + " - " + highScores.pop();
+    highScores.unshift(initalPlusScores);
+    //pull scores from memory
+    var storedScore = localStorage.getItem("highScores");
+    //add to highscore array
+    highScores.push(storedScore);
+    //push back up to memory as a string
+    localStorage.setItem("highScores", highScores.join());
+}
+
+
+//initiated after pressing scores link and populate scores page
 function scorePage() {
+    //hide start and end pages
     document.getElementById("end").style.display = "none";
     document.getElementById("start").style.display = "none";
     document.getElementById("scores").style.display = "block";
 
     //pull scores from local storage
     var storedScore = localStorage.getItem("highScores");
-    
+
     //break string into an array then run forloop to add scores into a single string with \n
     var pastScores = storedScore.split(",");
     var printedScores = "";
-    for (var i = 0; i < pastScores.length; i++){
-        
-        printedScores = printedScores+pastScores[i]+"\n";
+    for (var i = 0; i < pastScores.length; i++) {
+
+        printedScores = printedScores + pastScores[i] + "\n";
     }
-    console.log(printedScores);
+    
     //add string to box
     document.getElementById("allScores").innerHTML = printedScores;
-   
+
 }
 
-//sends inital and score to be save to local drive
-function submit () {
-    submitBtn.disabled = true;
-    let inputValue = document.getElementById("input").value;
-    let initalPlusScores = inputValue+" - "+ highScores.pop();
-    highScores.unshift(initalPlusScores);
-    console.log(highScores);
+
+//initiated after clicking cleear and clears out local drive and text displayed in box
+function clear() {
+    localStorage.setItem("highScores", "");
     var storedScore = localStorage.getItem("highScores");
-    highScores.push(storedScore);
-    localStorage.setItem("highScores",highScores.join());   
+    document.getElementById("allScores").innerHTML = storedScore;
 }
 
-//clear out local drive and clear out text displayed in box
-function clear () {
-    localStorage.setItem("highScores","");  
-    var storedScore = localStorage.getItem("highScores");
-    document.getElementById("allScores").innerHTML = storedScore;  
-}
-
-//return to starting page and make everything else unviewable
-function goBack () {
+//initated with goback and return to starting page and make everything else unviewable
+function goBack() {
     document.getElementById("start").style.display = "block";
     document.getElementById("questionSect").style.display = "none";
     document.getElementById("score").style.visibility = "visible";
     document.getElementById("end").style.display = "none";
     document.getElementById("scores").style.display = "none";
-    
+
 }
 
-//open up high score when view scores and is pressed and populates the page appropriately
-//button to clear scores
-//button to go back to the start of the page
+//event listeners for all buttons and links
 startBtn.addEventListener("click", initiateQuiz);
 r1Btn.addEventListener("click", MC1);
 r2Btn.addEventListener("click", MC2);
@@ -542,8 +332,5 @@ r3Btn.addEventListener("click", MC3);
 r4Btn.addEventListener("click", MC4);
 scoreBtn.addEventListener("click", scorePage);
 submitBtn.addEventListener("click", submit);
-goBackBtn.addEventListener("click", goBack );
+goBackBtn.addEventListener("click", goBack);
 clearBtn.addEventListener("click", clear);
-
-//to do: add input section to save scores with input button and initals, make it save to local
-//scores to pull the scores and add functionality to the two buttons
