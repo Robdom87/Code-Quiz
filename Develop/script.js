@@ -2,46 +2,11 @@
 
 //array with all code questions and answers
 var codeQs = [
-    ["How many legs does the Legs of Man have", [["Three.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["How many tails does a Manx cat have", [["None.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["How many teeth does an aardvark have", [["None.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which sea creature has three hearts", [["Octopus.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which instrument has forty-seven strings and seven pedals", [["Harp.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Whose face was said to have launched 1,000 ships", [["Helen of Troy.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["In the traditional rhyme, how many mice were blind", [["Three.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["How many bones does an adult human have", [["Two hundred and six.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["How many pedals do most modern pianos have", [["Three.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Water boils at 212 degrees on which temperature scale", [["Fahrenheit.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Who went to school with a lamb", [["Mary.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Who sat in a corner eating a Christmas pie", [["Little Jack Horner.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Where did the lady wearing rings on her fingers and bells on her toes ride to", [["Banbury Cross.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which item of nursery furniture was set on top of a tree", [["Cradle.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which traditional children's rhyme was about the plague", [["Ring O'Roses.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Name the once-popular boy's building game which was aimed at developing an understanding of mechanics and electronics", [["Mechano", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Name the doll which was famous for crying", [["Tiny Tears", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which furry creatures lived on Wimbledon Common", [["Wombles.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["If you rode a Chopper, what was this", [["Bicycle.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What was soaked in vinegar then hung on a string", [["Conker.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What is the Italian word for 'pie'", [["Pizza.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What is the national flower of Wales", [["Daffodil.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which Australian marsupial enjoys eating eucalyptus leaves", [["Koala.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which reptile should you never smile at, according to the song", [["Crocodile.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Alfred, an ancient King of Wessex, is famous for burning what", [["Cakes.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["In nautical terms, what is the opposite of port", [["Starboard.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["How many bones are there on a Skull & Crossbones flag", [["Three.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What was Marilyn Monroe's natural hair colour", [["Ginger.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Name Fred Astaire's famous red-haired dancing partner", [["Ginger Rogers", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What is the world's tallest tree", [["The coast redwood, one of three sequoia species.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What name was given to the soldiers who protected Roman emperors", [["Praetorian Guard.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which two metals is pewter made from", [["Tin and lead.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What was Louis Armstrong's chosen form of music", [["Jazz.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Name the port of Rome", [["Ostia", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Paul Newman ate fifty eggs in which film", [["Cool Hand Luke.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Don Alfonso is the lead role in which opera", [["Cosi Fan Tutte by Mozart.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which city does the River Lagan flow through", [["Belfast.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Who sang about being an eggman and a walrus", [["The Beatles.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["What takes place in Hong Kong's Happy Valley", [["Horse racing.", true], ["Spoils", false], ["For", false], ["King", false]]],
-    ["Which country does the sport of pelato come from", [["Spain.", true], ["Spoils", false], ["For", false], ["King", false]]]
+    ["Commonly used data types DO NOT include ______.", [["Alerts", true], ["Booleans", false], ["Strings", false], ["Numbers", false]]],
+    ["The condition in an if / else statement is enclosed within ______.", [["Paranthesis", true], ["Curly Brackets", false], ["Quotes", false], ["Square Brackets", false]]],
+    ["Arrays in JavaScript can be used to store _____.", [["All of the above", true], ["Other Arrays", false], ["Booleans", false], ["Numbers and Strings", false]]],
+    ["String values must be enclosed within _____ when being assigned to variables.", [["Quotes", true], ["Curly Brackets", false], ["Commas", false], ["Paranthesis", false]]],
+    ["A very useful tool used during development and debugging for printing content to the debugger is:", [["console.log", true], ["terminal/bash", false], ["for loops", false], ["JavaScript", false]]]
 ];
 
 //global variables
@@ -259,7 +224,7 @@ function endQuiz() {
 
     //calc score and send to highscores array and display
     let score = Math.round(100 * (numQs - wrong) / codeQs.length);
-    highScores.unshift(score);
+    highScores.push(score);
     document.getElementById("scoreStated").innerHTML = "Your final score is " + score + "%!";
 
 };
@@ -272,7 +237,7 @@ function submit() {
     let inputValue = document.getElementById("input").value;
     //add intials to current scores
     let initalPlusScores = inputValue + " - " + highScores.pop();
-    highScores.unshift(initalPlusScores);
+    highScores.push(initalPlusScores);
     //pull scores from memory
     var storedScore = localStorage.getItem("highScores");
     //add to highscore array
@@ -294,11 +259,12 @@ function scorePage() {
     //break string into an array then run forloop to add scores into a single string with \n
     var pastScores = storedScore.split(",");
     var printedScores = "";
-    for (var i = 0; i < pastScores.length; i++) {
+    for (var i = 0; i < pastScores.length-1; i++) {
 
-        printedScores = printedScores + pastScores[i] + "\n";
-    }
+        printedScores = printedScores + "<p>" + pastScores[i] + "</p>";
     
+    }
+
     //add string to box
     document.getElementById("allScores").innerHTML = printedScores;
 
