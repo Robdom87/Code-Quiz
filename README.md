@@ -1,4 +1,4 @@
-#challenge-4-Code-Quiz
+# Code-Quiz
 
 ## Description
 
@@ -16,7 +16,7 @@ Once the scores are clicked, the scores page appears with a list of all the scor
 
 ## Deployed Link
 
-https://robdom87.github.io/challenge-4-Code-Quiz/
+[Link](https://robdom87.github.io/Code-Quiz/)
 
 ## Screenshot
 
